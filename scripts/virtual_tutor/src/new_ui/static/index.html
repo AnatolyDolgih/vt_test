@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VA - chat</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+  <header id="top-bar">
+    <div id="title-container">
+      <h1 id="page-title">Virtual Assistant</h1>
+      <div id="subtitle">based on eBICA cognitive architecture</div>
+    </div>
+    <div id="lang-switcher">
+      <button id="lang-ru" class="lang-button active" data-lang="ru">RU</button>
+      <button id="lang-en" class="lang-button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main id="main-content" class="chat-page">
+    <section class="chat-shell">
+      <div class="chat-toolbar">
+        <!--div class="topic-left">
+          <span class="topic-label" id="current-topic">Тема не выбрана</span>
+        </div-->
+        <div class="topic-right">
+          <span class="topic-badge">🗂️ <span id="topic-text">Тема не выбрана</span></span>
+          <button class="pill-btn small" id="change-topic">Сменить тему</button>
+          <button class="pill-btn small" id="logout-button">Выход</button>
+        </div>
+      </div>
+
+      <section id="chat-panel" class="chat-panel" aria-live="polite" aria-label="Диалог">
+      </section>
+    </section>
+  </main>
+
+  <footer class="composer">
+    <div class="composer-inner">
+      <!-- input id="message-input" autocomplete="off" placeholder="Напишите сообщение…"/ -->
+      <textarea id="message-input"
+          rows="1"
+          autocomplete="off"
+          placeholder="Напишите сообщение…"
+          aria-multiline="true"
+          wrap="soft"></textarea>
+      <div class="btn-group">
+        <button id="voice-button" class="btn secondary" aria-label="Голос">
+          <span class="btn-ico">🎤</span><span class="btn-text" data-ru="Голос" data-en="Voice">Голос</span><span class="vu" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+        <button id="send-button" class="btn primary" aria-label="Отправить">
+          <span class="spinner" aria-hidden="true"></span>
+          <span class="btn-text" data-ru="Отправить" data-en="Send">Отправить</span>
+        </button>
+      </div>
+    </div>
+    <div class="composer-hint" data-ru="Нажмите и удерживайте кнопку 'Голос' для записи речи" data-en="Press and hold the button 'Voice' to record speech"></div>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

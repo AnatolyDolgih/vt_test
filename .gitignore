@@ -1,0 +1,10 @@
+/Windows
+*logs
+*logs_moral
+*.env
+*recordings/
+*synthesize/
+*venv
+*__pycache__/
+*config.yaml
+*.log

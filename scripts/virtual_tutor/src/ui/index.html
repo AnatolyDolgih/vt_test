@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Virtual Tutor Assistant</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+    <div class="grid-container">
+      <div class="essay-container">
+        <div class="editor-label">Эссе</div>
+        <textarea id="essayEditor" class="text-editor" placeholder="Здесь пишите свое эссе..."></textarea>
+        <div class="controls">
+          <button onclick="submitEssay()">Отправить</button>
+        </div>
+      </div>
+    
+      <div class="dialog-container">
+        <div class="editor-label">Диалог с тьютором</div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <textarea id="dialogEditor" class="text-editor chat-input" placeholder="Здесь пишите сообщения для тьютора..."></textarea>
+        <div class="controls">
+          <button onclick="submitDialog()">Отправить</button>
+        </div>
+      </div>
+    </div>
+    
+    <script src="script.js"></script>
+    </body>
+    </html>

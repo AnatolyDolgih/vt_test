@@ -1,0 +1,291 @@
+/* Base */
+* { box-sizing: border-box; }
+:root{
+  --danger:#dc2626;      /* red-600 for recording*/ 
+  --bg:#f5f6f8;
+  --panel:#ffffff;
+  --ink:#0f172a;
+  --muted:#475569;
+  --border:#e2e8f0;
+  --brand:#111827;
+  --accent:#2563eb;
+  --composer-offset: 112px;
+}
+html,body{
+  height:100vh;
+  overflow:hidden;
+  /* height:100%; */
+  margin:0;
+  display: flex;
+  flex-direction: column;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,'Noto Sans',sans-serif;
+  -webkit-font-smoothing:antialiased
+}
+
+#top-bar{
+  position:sticky; top:0; z-index:5;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 24px; background:var(--brand); color:#fff; border-bottom:1px solid #0b1220;
+}
+#title-container{display:flex;flex-direction:column;}
+#page-title{margin:0;font-size:1.1rem;font-weight:700;letter-spacing:.2px}
+#subtitle{opacity:.8;font-size:.8rem}
+#lang-switcher{display:flex;gap:8px}
+.lang-button{padding:6px 10px;border:1px solid rgba(255,255,255,.25);border-radius:6px;background:transparent;color:#fff;cursor:pointer}
+.lang-button.active{background:#1f2937}
+
+.chat-page{
+  display:flex;
+  /* justify-content:center; */
+  flex-direction: column;
+  align-items: center; /* for horizontal centering */
+  flex: 1; /* fill remaining space after top-bar */
+  overflow: hidden;
+  /* padding:16px 16px 140px */
+  /* padding:16px 16px calc(var(--composer-offset) + 16px); */
+  padding:16px 16px 0;
+}
+.chat-shell{
+  width:100%;
+  max-width:960px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.chat-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;/* flex-start; */
+  margin:0 auto 8px;
+  max-width:960px
+}
+.topic-left{display:flex;align-items:center;gap:8px}
+.topic-label{display:inline-block;max-width:100%;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#f8fafc;color:var(--ink);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pill-btn{padding:8px 12px;border:none;border-radius:8px;background:#111827;color:#fff;font-weight:700;cursor:pointer}
+.pill-btn.small{padding:6px 10px;font-size:.9rem}
+
+.chat-panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  overflow:auto;
+  /* min-height: 70vh; */
+  /* max-height: calc(100vh - 260px); */
+  /* padding-bottom: calc(12px + var(--composer-offset)) динамически от высоты композера */
+  padding-bottom:12px;
+  flex: 1;
+}
+.message{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;max-width:95%}
+.message.assistant{background:#f7f7f7;}
+.message.user{background:#fff;border:1px solid var(--border)}
+.avatar{width:28px;height:28px;border-radius:50%;flex:0 0 28px;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-weight:800;color:#111827}
+.bubble{white-space:pre-wrap;line-height:1.6}
+.meta{font-size:.75rem;color:var(--muted);margin-top:6px}
+
+.composer{
+  position:fixed; left:0; right:0; bottom:0;
+  background: var(--bg);     /* сплошной фон, ничего не просвечивает */
+  padding:12px 0;
+  border-top:none;
+  box-shadow:none;
+  /* position: fixed;
+  left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(245,246,248,0), var(--bg) 40%);
+  padding: 16px 0;
+  border-top: 1px solid transparent;          /* было: var(--border)
+  box-shadow: 0 -8px 24px rgba(0,0,0,.04);     мягкое разделение вместо линии */
+}
+.composer-inner{width:100%;max-width:960px;margin:0 auto;padding:8px;border:1px solid var(--border);background:var(--panel);border-radius:12px;display:flex; align-items:flex-end;gap:8px;align-items:center}
+#message-input{
+  font: inherit;                /* тот же шрифт, что и везде */
+  display:block;
+  width:100%;
+  line-height: 1.3;             /* компактная высота строки */
+  height: calc(1em + 20px);     /* ОДНА строка + 10px сверху/снизу */
+  padding: 10px 14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow-y: hidden;           /* без скролла при одной строке */
+  overflow-x: hidden;
+  resize: none;
+  white-space: pre-wrap;
+  background: var(--panel);
+  color: var(--ink);
+  /* display:block;
+  width:100%;
+  line-height: 1.5;
+  min-height: 44px;
+  max-height: 192px;      /* ~6 строк 
+  overflow-y: hidden;     /* было auto — из-за этого появлялся скролл на 1 строке 
+  overflow-x: hidden;
+  resize: none;
+  white-space: pre-wrap; */
+}
+#message-input.at-max-height{
+  overflow-y: auto;       /* скролл ТОЛЬКО когда упёрлись в max-height */
+}
+#message-input:focus{border-color:#94a3b8;box-shadow:0 0 0 2px rgba(148,163,184,.25)}
+
+.btn-group{display:flex;gap:8px;align-self:flex-end}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border:1px solid var(--border);border-radius:10px;background:#fff;color:#0f172a;font-weight:600;cursor:pointer;min-width:120px;justify-content:center;transition:transform .15s ease, box-shadow .15s ease, opacity .2s}
+.btn.primary{background:#111827;color:#fff;border-color:#0b1220}
+.btn.secondary{background:#f8fafc}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+
+.spinner{display:none;width:16px;height:16px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite}
+#send-button.sending .spinner{display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+#voice-button.animating{ position:relative; }
+#voice-button.animating::after{
+  content:"";
+  position:absolute; inset:-4px;
+  border-radius:12px;
+  border:2px solid rgba(37,99,235,.5);
+  animation:voicePulse 1.2s ease-out infinite;
+}
+#voice-button.animating .btn-ico{ animation:micBounce .8s ease-in-out infinite; }
+@keyframes voicePulse{ 0%{ transform:scale(1); opacity:.8; } 100%{ transform:scale(1.12); opacity:0; } }
+@keyframes micBounce{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-2px); } }
+
+.composer-hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:6px}
+
+/* Responsive */
+@media (max-width: 1024px){
+  .chat-shell, .chat-toolbar, .composer-inner{max-width:840px}
+}
+@media (max-width: 900px){
+  .chat-shell, .chat-toolbar, .composer-inner{max-width:720px}
+}
+@media (max-width: 720px){
+  #top-bar { padding:10px 16px }
+  .chat-shell, .chat-toolbar, .composer-inner{max-width:100%;}
+  .composer-inner{border-left:none; border-right:none; border-radius:0}
+  .btn-group{gap:6px}
+  .btn{min-width:auto; padding:12px 14px}
+  #message-input{font-size:15px}
+}
+@media (max-width: 420px){
+  .chat-toolbar{padding:0 2px}
+  .topic-label{max-width:60vw}
+  .btn-group{flex-wrap:wrap}
+  .btn{flex:1 1 auto}
+}
+
+
+/* Voice press-and-hold states */
+#voice-button .vu{ display:none; gap:3px; align-items:flex-end; height:14px; margin-left:4px }
+#voice-button .vu i{ width:3px; height:6px; background:var(--danger); border-radius:1px; animation:vu 900ms ease-in-out infinite; }
+#voice-button .vu i:nth-child(2){ animation-delay:120ms }
+#voice-button .vu i:nth-child(3){ animation-delay:240ms }
+@keyframes vu{ 0%,100%{ height:6px } 50%{ height:14px } }
+
+#voice-button.recording{ border-color: var(--danger); box-shadow: 0 0 0 2px rgba(220,38,38,.12); }
+#voice-button.recording::after{ content:''; position:absolute; inset:-4px; border-radius:12px; border:2px solid rgba(220,38,38,.35); animation:voicePulse 1s ease-out infinite; pointer-events:none }
+#voice-button.recording .vu{ display:inline-flex }
+#voice-button.recording .btn-ico{ transform: scale(1.05) }
+
+#voice-button.processing{ position:relative; }
+#voice-button.processing::after{ content:''; position:absolute; inset:-2px; border-radius:12px; border:2px dashed rgba(15,23,42,.25); animation:processingSpin 1.2s linear infinite; pointer-events:none }
+@keyframes processingSpin{ to{ transform: rotate(360deg) } }
+
+/* Языковые кнопки с сильным контрастом */
+#lang-switcher .lang-button{
+  background: transparent;
+  color: rgba(255,255,255,.92);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-weight: 600;
+}
+#lang-switcher .lang-button:hover{
+  background: rgba(255,255,255,.08);
+}
+#lang-switcher .lang-button.active{
+  background: #ffffff;            /* максимально контрастно к топ-бару */
+  color: var(--brand);            /* #111827 */
+  border-color: #ffffff;
+}
+#lang-switcher .lang-button:focus-visible{
+  outline: 2px solid var(--accent);  /* #2563eb */
+  outline-offset: 2px;
+}
+
+/* Время в правом нижнем углу бабла */
+.message .bubble{
+  position: relative;
+  display: block;       /* было inline-block */
+  flex: 1 1 auto;       /* пусть тянется в строке с аватаром */
+  max-width: 100%;
+  padding-right: 64px;  /* место под время */
+  min-width: 0;                 /* КЛЮЧЕВАЯ строка для флексов */
+  overflow-wrap: anywhere;      /* переносим очень длинные слова/URL */
+  word-break: break-word;       /* доп. страховка для старых браузеров */
+  hyphens: auto;                /* мягкие переносы (учтёт lang="ru") */
+}
+
+.message .bubble a{
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* прижать время к правому-нижнему углу */
+.message .bubble .meta{
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  margin: 0 !important;    /* перекрываем .meta{ margin-top:6px } */
+  font-size: .75rem;
+  color: var(--muted);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+@media (max-width: 420px){
+  .message .bubble{ padding-right: 72px; }
+}
+
+
+
+/* Multiline composer like ChatGPT — final */
+#message-input{
+  font: inherit;
+  display:block;
+  width:100%;
+  line-height: 1.3;
+  min-height: 0;                 /* сброс на всякий случай */
+  height: calc(1em + 20px);      /* одна строка по умолчанию */
+  max-height: 160px;             /* компактнее, чтобы не наезжать на чат */
+  padding: 10px 14px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow-y: hidden;            /* НЕТ скролла на одной строке */
+  overflow-x: hidden;
+  resize: none;
+  white-space: pre-wrap;
+  background: var(--panel);
+  color: var(--ink);
+}
+#message-input.at-max-height{    /* скролл только на пределе */
+  overflow-y: auto;
+}
+
+.topic-right {
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.topic-badge{
+  padding:6px 10px;border:1px solid var(--border);
+  background:#f8fafc;border-radius:999px;color:var(--ink);
+  font-size:.9rem;max-width:40vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}

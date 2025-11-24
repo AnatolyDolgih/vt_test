@@ -1,0 +1,69 @@
+# Пример конфигурации для virtual_tutor
+# Настройки LLM. Приложение читает их через server.helper.load_config()
+
+#------------------------------------------------------------------
+# Uncomment for using  OpenAI
+#------------------------------------------------------------------
+llm:
+  # Выберите провайдера. Поддерживаются:
+  # - openai_proxy  — если вы используете прокси-сервер совместимый с OpenAI API
+  # - openai        — официальный OpenAI API
+  provider: openai_proxy
+
+  # Базовый URL API. Для прокси — ваш прокси-URL, для OpenAI — https://api.openai.com/v1
+  api_base: "https://www.bicaai2023.org/openai/v1/chat/completions"
+  api_tts: "https://www.bicaai2023.org/openai_tts_generate/v1/chat/completions"
+
+  # Откуда брать ключ:
+  # 1) api_key_env — имя переменной окружения (например, PROXY_TOKEN или OPENAI_API_KEY)
+  # 2) или api_key — сам ключ (не рекомендуется хранить в файле; оставьте пустым)
+  api_key_env: "PROXY_TOKEN"
+  api_key: ""
+
+  # Основные модели/параметры
+  model_chat: "gpt-4o"
+  model_tts:  "tts-1"   
+  tts_voice:  "nova"
+  model_stt:  "whisper-1"
+#------------------------------------------------------------------
+
+#-----------------------------------------------------------------
+# Uncomment for using DeepSeek
+#-----------------------------------------------------------------
+# llm:
+#   # Выберите провайдера. Поддерживаются:
+#   # - openai_proxy  — если вы используете прокси-сервер совместимый с OpenAI API
+#   # - openai        — официальный OpenAI API
+#   provider: deepseek
+
+#   # Базовый URL API. Для прокси — ваш прокси-URL, для OpenAI — https://api.openai.com/v1
+#   api_base: "https://api.deepseek.com/v1/chat/completions"
+#   api_tts: "https://www.bicaai2023.org/openai_tts_generate/v1/chat/completions"
+
+#   # Откуда брать ключ:
+#   # 1) api_key_env — имя переменной окружения (например, PROXY_TOKEN или OPENAI_API_KEY)
+#   # 2) или api_key — сам ключ (не рекомендуется хранить в файле; оставьте пустым)
+#   api_key: ""
+#   api_key_env: "PROXY_TOKEN"
+  
+
+#   # Основные модели/параметры
+#   model_chat: "deepseek-chat"
+#   model_tts:  "tts-1"   
+#   tts_voice:  "nova"
+#   model_stt:  "whisper-1"
+#-----------------------------------------------------------------
+
+
+# Примеры для других провайдеров:
+# deepseek:
+#   provider: deepseek
+#   api_base: "https://api.deepseek.com/v1/chat/completions"
+#   api_key_env: "DEEPSEEK_API_KEY"
+#   model_chat: "deepseek-chat"
+#
+# qwen (DashScope совместимый режим):
+#   provider: qwen
+#   api_base: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+#   api_key_env: "DASHSCOPE_API_KEY"
+#   model_chat: "qwen2.5-7b-instruct"

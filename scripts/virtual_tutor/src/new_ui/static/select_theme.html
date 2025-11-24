@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VA - select theme</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+  <style>
+    .select-wrap{max-width:780px;margin:18vh auto 0;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:24px}
+    .select-row{display:flex;gap:10px}
+    .select-row input{flex:1;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:16px}
+    .select-row button{padding:12px 18px;border:none;border-radius:10px;background:var(--brand);color:#fff;font-weight:700;min-width:180px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <header id="top-bar">
+    <div id="title-container">
+      <h1 id="page-title">Virtual Assistant</h1>
+      <div id="subtitle">based on eBICA cognitive architecture</div>
+    </div>
+    <div id="lang-switcher">
+      <button id="lang-ru" class="lang-button" data-lang="ru">RU</button>
+      <button id="lang-en" class="lang-button" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="select-wrap">
+      <h2 id="sel-title"
+        data-ru="Выберите тему беседы"
+        data-en="Choose a conversation topic"
+        style="margin-top:0">Выберите тему беседы</h2>
+      <div class="select-row">
+        <input id="topic-input"
+              data-ru="Например: подготовка к интервью по JS"
+              data-en="E.g., preparing for a JS interview"
+              placeholder="Например: подготовка к интервью по JS"/>
+
+        <button id="continue-button"
+                data-ru="Начать диалог"
+                data-en="Start chat">Начать диалог</button>
+      </div>
+      <p class="tip" style="margin:10px 2px 0"></p>
+    </div>
+  </main>
+
+  <script src="/static/select_theme.js"></script>
+</body>
+</html>
