@@ -67,7 +67,8 @@ async def build_agent():
 - `custom_agent/server.py` — FastAPI‑сервер с роутом `/custom_agent/reply` (совместим с new_ui и любым клиентом).
 Запуск:
 ```bash
-uvicorn scripts.virtual_tutor.custom_agent.server:app --reload --host 0.0.0.0 --port 5051
+cd scripts/virtual_tutor/custom_agent
+uvicorn server:app --reload --host 0.0.0.0 --port 5051
 curl -X POST "http://localhost:5051/custom_agent/reply" \
      -H "Content-Type: application/json" \
      -d '{"text":"Помоги придумать план эссе", "tts": false}'

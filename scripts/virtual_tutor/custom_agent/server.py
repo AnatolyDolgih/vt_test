@@ -4,7 +4,7 @@ from aiohttp import ClientSession
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from .agent import CustomAgent
+from agent import CustomAgent
 
 app = FastAPI(title="Custom Virtual Tutor")
 

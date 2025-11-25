@@ -21,9 +21,9 @@
 3. Скопируйте `config.yaml.example` в `config.yaml` и пропишите API-ключи, модели и адреса провайдеров для LLM/TTS/STT. Эти значения считываются `server.helper.load_config()` внутри `VirtualTutor`.
 
 ## Запуск агента
-1. Запустите uvicorn из корня репозитория (важно указать полный путь к модулю, чтобы корректно подхватились импорты):
+1. Из директории `scripts/virtual_tutor/custom_agent` поднимите сервер:
    ```bash
-   uvicorn scripts.virtual_tutor.custom_agent.server:app --reload --host 0.0.0.0 --port 5051
+   uvicorn server:app --reload --host 0.0.0.0 --port 5051
    ```
 2. Проверьте API с помощью curl:
    ```bash
