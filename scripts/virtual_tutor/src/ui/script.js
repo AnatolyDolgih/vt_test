@@ -1,5 +1,6 @@
 const client_id = Date.now()
-let web_socket = new WebSocket(`wss://bica-project.tw1.ru/test/wss/${client_id}`);
+const wsUrl = `${location.origin.replace(/^http/, 'ws')}/legacy/wss/${client_id}`
+let web_socket = new WebSocket(wsUrl);
 
 web_socket.onopen = () => {
     console.log('WebSocket Connection established');
@@ -22,7 +23,7 @@ function addMessage(message, isUser = true) {
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
-    
+
 async function submitDialog() {
     const message = dialogEditor.value;
     if (!message.trim()) return;
@@ -45,10 +46,10 @@ async function submitDialog() {
         alert('Error submitting dialog. Please try again.');
     }
 }
-    
+
 async function submitEssay() {
     const message = essayEditor.value;
-    addMessage(message, true)  
+    addMessage(message, true)
     try {
         if (web_socket.readyState === WebSocket.OPEN) {
             const data_essay = {
@@ -64,18 +65,18 @@ async function submitEssay() {
         alert('Error submitting essay. Please try again.');
     }
 }
-    
+
 function showSaveAnimation(element) {
     element.parentElement.classList.add('saving');
     setTimeout(() => {
         element.parentElement.classList.remove('saving');
     }, 1000);
 }
-    
+
 window.addEventListener('load', () => {
     addMessage('Здравствуйте! Я ваш виртуальный тьютор. Чем могу помочь?', false);
 });
-    
+
 dialogEditor.addEventListener('keypress', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
